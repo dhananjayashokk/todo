@@ -8,7 +8,7 @@ return (
     <div className="col-md-12">
         <h1>To-Do List</h1>
         
-        {/* <Form/> */}
+        <Form/>
 
     </div>
   );
