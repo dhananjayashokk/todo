@@ -1,34 +1,30 @@
 import React from "react";
 import { InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
+import { update_todos,delete_todos } from "./actions/todo";
+import { useDispatch } from "react-redux";
 
-
-const List = ({filteredtodoName,setFilteredTodoName,todoName,setTodoName}) => {
+const List = ({todoName,selectedBucket}) => {
+  console.log("todos to show",todoName)
+  const dispatch = useDispatch();
   
   const completeTodo = (e) => {
-        let updatedTodos = filteredtodoName.map(todo => {
-          if (todo.id == e.target.id) {
-            todo.status = !todo.status;
-          }
-          return todo;
-        });
-        setFilteredTodoName(updatedTodos);
-      };
+    dispatch(update_todos( e.target.id,selectedBucket))
+    };
     
-    const removeTodo = (e) => {
-    const removedArr = [...todoName].filter(todo => todo.id != e.target.id );
-    setTodoName(removedArr);
-    
+  const removeTodo = (e) => {
+    dispatch(delete_todos( e.target.id,selectedBucket))
+
   };
 
   return (
-    <div style={{marginTop:"6%"}}>
-      {filteredtodoName.map((bucket)=>(<div style={{display:"flex",marginTop:"2%"}}>
-        <Alert key={"1"} style={{width:"50%"}} variant={bucket.status==1?"success":"danger"}>
+    <div style={{marginTop:"3%"}}>
+      {todoName.map((bucket)=>(<div key={bucket.id}  style={{display:"flex",marginTop:"1%"}}>
+        <Alert key={"1"}  style={{minWidth:"40%"}} variant={bucket.status==1?"success":"danger"}>
             {bucket.name}
         </Alert>
-        <Button id={bucket.id} variant={bucket.status==1?"danger":"success"} onClick={completeTodo} style={{marginLeft:"2%"}}>{bucket.status==1?"Incomplete":"Complete"}
+        <Button size="sm" className="mb-2" id={bucket.id} variant={bucket.status==1?"danger":"success"} onClick={completeTodo} style={{marginLeft:"2%"}}>{bucket.status==1?"Incomplete":"Complete"}
         </Button>
-        <Button variant="danger" id={bucket.id}  onClick={removeTodo} style={{marginLeft:"2%"}}>
+        <Button size="sm" className="mb-2" variant="danger" id={bucket.id}  onClick={removeTodo} style={{marginLeft:"2%"}}>
             Delete
         </Button>
     </div>))} 

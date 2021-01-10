@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from "react";
-import { InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
-import Todos from './List'
+import React from "react";
 import Form from './Form'
+
 
 const Index = (props) => {
 return (
