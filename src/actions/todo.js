@@ -24,7 +24,6 @@ export const create_bucket = (bucket_name) => (dispatch) => {
 export const get_buckets = () => (dispatch) => {
   return TodoService.get_buckets().then(
     (response) => {
-      console.log("response",response)
       dispatch({
         type: GET_BUCKETS,
         payload:response
@@ -39,10 +38,8 @@ export const get_buckets = () => (dispatch) => {
 };
 
 export const get_todos = (selected_bucket) => (dispatch) => {
-  console.log("get_do action",selected_bucket)
   return TodoService.get_todos(selected_bucket).then(
     (response) => {
-      console.log("response",response)
       dispatch({
         type: GET_TODOS,
         payload:response
@@ -59,7 +56,6 @@ export const get_todos = (selected_bucket) => (dispatch) => {
 export const update_todos = (todo_id,selected_bucket) => (dispatch) => {
   return TodoService.update_todos(todo_id).then(
     (response) => {
-      console.log("response",response)
       
       dispatch(get_todos(selected_bucket))
 
@@ -74,7 +70,6 @@ export const update_todos = (todo_id,selected_bucket) => (dispatch) => {
 export const delete_todos = (todo_id,selected_bucket) => (dispatch) => {
   return TodoService.delete_todos(todo_id).then(
     (response) => {
-      console.log("response",response)
       dispatch(get_todos(selected_bucket))
 
       return Promise.resolve();

@@ -4,7 +4,6 @@ import { update_todos,delete_todos } from "./actions/todo";
 import { useDispatch } from "react-redux";
 
 const List = ({todoName,selectedBucket}) => {
-  console.log("todos to show",todoName)
   const dispatch = useDispatch();
   
   const completeTodo = (e) => {

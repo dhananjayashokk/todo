@@ -17,7 +17,6 @@ const Form = (props) => {
     const[todoName,setTodoName]=useState(todos.length!=0 ?  todos[0].name: [])
     useEffect(() => {
         setTodoName(todos.length!=0 ?  todos : [])
-        console.log("todos let wala",todos)
     }, [todos]);
 
     useEffect(()=>{
@@ -64,7 +63,6 @@ const Form = (props) => {
     }
 
     useEffect(() => {
-         console.log("todoname",todoName)
        }, [todoName]);
   
 
